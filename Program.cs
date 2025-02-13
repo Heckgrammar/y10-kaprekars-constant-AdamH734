@@ -15,9 +15,55 @@
 
             Console.WriteLine("Hello, Type a four digit number:"); //starter code for students
             int x = Convert.ToInt32(Console.ReadLine()); //starter for students
-            //YOUR CODE GOES HERE....  
-
+                                                         //YOUR CODE GOES HERE....  
+            int[] arr = { 2, 1, 4, 5, 3 };
 
         }
+
+        private static double[] BubbleSortAscending(double[] numberArray)
+        {
+            int arrayLength = numberArray.Length;
+
+            for (int i = 0; i < arrayLength - 1; i++)
+            {
+                for (int j = 0; j < arrayLength - 1 - i; j++)
+                {
+                    if (numberArray[j] > numberArray[j + 1])
+                    {
+                        double num = numberArray[j];
+                        numberArray[j] = numberArray[j + 1];
+                        numberArray[j + 1] = num;
+                    }
+                }
+            }
+            return numberArray;
+        }
+        public static int ReorderInt32Digits(int v)
+        {
+            int n = Math.Abs(v);
+            int l = ((int)Math.Log10(n > 0 ? n : 1)) + 1;
+            int[] d = new int[l];
+            for (int i = 0; i < l; i++)
+            {
+                d[(l - i) - 1] = n % 10;
+                n /= 10;
+            }
+            if (v < 0)
+                d[0] *= -1;
+            Array.Sort(d);
+            Array.Reverse(d);
+            int h = 0;
+
+            for (int i = 0; i < d.Length; i++)
+            {
+                int index = d.Length - i - 1;
+                h += ((int)Math.Pow(10, index)) * d[i];
+            }
+            return h; 
+        }
+
+
+
     }
-}
+    }
+
